@@ -34,8 +34,24 @@ std::vector<int> sequenceGeneration()
 	return vec;
 }
 
+float testFrequencyBit(std::vector<int>& sequence)
+{
+	double sum = 0;
+	for (int i : sequence)
+	{
+		if (i == 1)
+			++sum;
+		else
+			--sum;
+	}
+	sum = sum / sqrt(sequence.size());
+	float result = erfc(sum / sqrt(2));
+	return result;
+}
+
 int main()
 {
-	sequenceGeneration();
+	auto s = sequenceGeneration();
+	std::cout << "\n" << testFrequencyBit(s);
 	return 0;
 }
