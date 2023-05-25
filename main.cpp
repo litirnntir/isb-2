@@ -49,9 +49,30 @@ float testFrequencyBit(std::vector<int>& sequence)
 	return result;
 }
 
+float testIdenticalConsecutiveBits(std::vector<int>& sequence)
+{
+	float psi = 0;
+	unsigned long n = sequence.size();
+	for (auto i : sequence)
+		psi += i;
+	psi /= n;
+	if (abs(psi - 0.5) >= (2 / sqrt(n)))
+		return 0;
+	int value = 0;
+	for (int i = 0; i < n - 1; ++i)
+	{
+		if (sequence[i] != sequence[i + 1])
+			++value;
+	}
+	float numerator = abs(value - n * psi * (1 - psi) * 2);
+	float denominator = 2 * sqrt(2 * n) * psi * (1 - psi);
+	float result = erfc(numerator / denominator);
+	return result;
+}
+
 int main()
 {
 	auto s = sequenceGeneration();
-	std::cout << "\n" << testFrequencyBit(s);
+	std::cout << "\n" << testIdenticalConsecutiveBits(s);
 	return 0;
 }
