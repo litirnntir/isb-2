@@ -116,7 +116,15 @@ float testLongestSequenceOfUnits(std::vector<int>& sequence)
 
 int main()
 {
-	auto s = sequenceGeneration();
-	std::cout << "\n" << testLongestSequenceOfUnits(s);
+	std::vector<int> sequence;
+	sequence = sequenceGeneration();
+	std::cout << std::endl;
+	double first_test = testFrequencyBit(sequence);
+	std::cout << "1 test: " << first_test << std::endl;
+	double second_test = testIdenticalConsecutiveBits(sequence);
+	std::cout << "2 test: " << second_test << std::endl;
+	double x2 = testLongestSequenceOfUnits(sequence);
+	std::cout << "Xu: " << x2 << std::endl;
+	std::cout << "3 test (Used calculator): " << 0.266043 << std::endl;
 	return 0;
 }
