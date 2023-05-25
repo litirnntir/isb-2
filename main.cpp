@@ -70,9 +70,53 @@ float testIdenticalConsecutiveBits(std::vector<int>& sequence)
 	return result;
 }
 
+float testLongestSequenceOfUnits(std::vector<int>& sequence)
+{
+	int index = 0;
+	std::vector<int> countUnits;
+	while (index != 128)
+	{
+		std::vector<int> tmp;
+		for (int i = index; i < index + 8; ++i)
+		{
+			tmp.push_back(sequence[i]);
+		}
+		int len = 0, count = 0, max = 0;
+		for (auto i : tmp)
+		{
+			if (i == 1) ++count;
+			else
+			{
+				if (count > max) max = count;
+				count = 0;
+			}
+		}
+		len = max;
+		countUnits.push_back(len);
+		index += 8;
+	}
+
+	int v1 = 0, v2 = 0, v3 = 0, v4 = 0;
+	for (auto i : countUnits)
+	{
+		if (i <= 1) ++v1;
+		if (i == 2) ++v2;
+		if (i == 3) ++v3;
+		if (i >= 4) ++v4;
+	}
+	std::vector<int> v = { v1, v2, v3, v4 };
+	std::vector<double> p = { 0.2345, 0.3231, 0.1304, 0.2673 };
+	float x2 = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		x2 += (pow((v[i] - 16 * p[i]), 2) / (16 * p[i]));
+	}
+	return x2;
+}
+
 int main()
 {
 	auto s = sequenceGeneration();
-	std::cout << "\n" << testIdenticalConsecutiveBits(s);
+	std::cout << "\n" << testLongestSequenceOfUnits(s);
 	return 0;
 }
