@@ -58,7 +58,7 @@ float testIdenticalConsecutiveBits(std::vector<int>& sequence)
 	psi /= n;
 	if (abs(psi - 0.5) >= (2 / sqrt(n)))
 		return 0;
-	int value = 0;
+	float value = 0;
 	for (int i = 0; i < n - 1; ++i)
 	{
 		if (sequence[i] != sequence[i + 1])
@@ -106,7 +106,7 @@ float testLongestSequenceOfUnits(std::vector<int>& sequence)
 	}
 	std::vector<int> v = { v1, v2, v3, v4 };
 	std::vector<double> p = { 0.2345, 0.3231, 0.1304, 0.2673 };
-	float x2 = 0;
+	double x2 = 0;
 	for (int i = 0; i < 4; ++i)
 	{
 		x2 += (pow((v[i] - 16 * p[i]), 2) / (16 * p[i]));
